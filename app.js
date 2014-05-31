@@ -2,15 +2,16 @@ var express = require("express");
 var app = express();
 var pg = require('pg');
 var Bookshelf  = require('bookshelf');
+var knex  = require('knex');
 
 Bookshelf.PG = Bookshelf.initialize({
     client: 'pg',
-      connection: {
-        host     : 'ec2-54-243-49-82.compute-1.amazonaws.com',
-        user     : 'sltswpnjskrfaz',
-        password : 'XzcOx6_JmgnFUgLuBZsOfxtd0r',
-        database : 'd3as6a49gvh5g3',
-        charset  : 'UTF8_GENERAL_CI'
+        connection: {
+            host     : 'ec2-54-243-49-82.compute-1.amazonaws.com',
+            user     : 'sltswpnjskrfaz',
+            password : 'XzcOx6_JmgnFUgLuBZsOfxtd0r',
+            database : 'd3as6a49gvh5g3',
+            charset  : 'UTF8_GENERAL_CI'
     }
 });
 
@@ -18,12 +19,19 @@ Bookshelf.PG = Bookshelf.initialize({
 var Bookshelf = require('bookshelf').PG;
 
 var User = Bookshelf.Model.extend({
-  tableName: 'users',
-  email: ''
+    tableName: 'users',
+    email: ''
 });
 
 app.get('/', function(req, res) {
     console.log(process.env.DATABASE_URL);
+
+    knex.schema.createTable('users', function (table) {
+        table.string('email');
+        table.timestamps();
+    }).then(function () {
+        console.log('Users Table is Created!');
+    });
 
     var user = new User({ email: 'my@email.com' }).save()
         .then(function () {
@@ -38,5 +46,5 @@ app.get('/', function(req, res) {
 
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {
-  console.log("Listening on " + port);
+    console.log("Listening on " + port);
 });

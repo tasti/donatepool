@@ -1,0 +1,16 @@
+{
+  "name": "donatepool",
+  "version": "0.0.1",
+  "description": "donatepool ==========",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tasti-zakarie/donatepool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://github.com/tasti-zakarie/donatepool",
+  "dependencies": {
+    "express": "~4.4.0"
+  }
+}

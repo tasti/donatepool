@@ -6,10 +6,10 @@ var Bookshelf  = require('bookshelf');
 Bookshelf.PG = Bookshelf.initialize({
     client: 'pg',
       connection: {
-        host     : 'ec2-107-22-163-140.compute-1.amazonaws.com',
-        user     : 'zkyhliyptxwwry',
-        password : 'weLWaLDvhh9gpxNBMSLiOE7PY_',
-        database : 'dea6fsu3t8b7ri',
+        host     : 'ec2-54-243-49-82.compute-1.amazonaws.com',
+        user     : 'sltswpnjskrfaz',
+        password : 'XzcOx6_JmgnFUgLuBZsOfxtd0r',
+        database : 'd3as6a49gvh5g3',
         charset  : 'UTF8_GENERAL_CI'
     }
 });
@@ -18,11 +18,21 @@ Bookshelf.PG = Bookshelf.initialize({
 var Bookshelf = require('bookshelf').PG;
 
 var User = Bookshelf.Model.extend({
-  tableName: 'users'
+  tableName: 'users',
+  email: ''
 });
 
 app.get('/', function(req, res) {
     console.log(process.env.DATABASE_URL);
+
+    var user = new User({ email: 'my@email.com' }).save()
+        .then(function () {
+            console.log('SAVED11111!!!!!!!');
+        })
+        .catch(function (err) {
+            console.log('ERROR: ' + err);
+        });
+
     res.send('Hello Battlehack!');
 });
 

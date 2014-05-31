@@ -8,9 +8,12 @@
     "url": "https://github.com/tasti-zakarie/donatepool.git"
   },
   "author": "",
-  "license": "ISC",
-  "homepage": "https://github.com/tasti-zakarie/donatepool",
+  "license": "MIT",
+  "homepage": "https://donatepool.herokuapp.com/",
   "dependencies": {
     "express": "~4.4.0"
+  },
+  "engines": {
+    "node": "0.10.x"
   }
 }

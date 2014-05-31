@@ -1,45 +1,24 @@
 var express = require("express");
 var app = express();
-var pg = require('pg');
-var Bookshelf  = require('bookshelf');
-var knex  = require('knex');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
 
-Bookshelf.PG = Bookshelf.initialize({
-    client: 'pg',
-        connection: {
-            host     : 'ec2-54-243-49-82.compute-1.amazonaws.com',
-            user     : 'sltswpnjskrfaz',
-            password : 'XzcOx6_JmgnFUgLuBZsOfxtd0r',
-            database : 'd3as6a49gvh5g3',
-            charset  : 'UTF8_GENERAL_CI'
-    }
+var User = new Schema({
+    id    : ObjectId
+  , email     : String
 });
 
-// elsewhere, to use the client:
-var Bookshelf = require('bookshelf').PG;
-
-var User = Bookshelf.Model.extend({
-    tableName: 'users',
-    email: ''
-});
+mongoose.connect('mongodb://root:password123@kahana.mongohq.com:10071/donatepool');
 
 app.get('/', function(req, res) {
-    console.log(process.env.DATABASE_URL);
-
-    knex.schema.createTable('users', function (table) {
-        table.string('email');
-        table.timestamps();
-    }).then(function () {
-        console.log('Users Table is Created!');
+    var MyModel = mongoose.model('User', User);
+    var instance = new MyModel();
+    instance.my.key = 'hello';
+    instance.save(function (err) {
+        console.log('SAVED!');
     });
 
-    var user = new User({ email: 'my@email.com' }).save()
-        .then(function () {
-            console.log('SAVED11111!!!!!!!');
-        })
-        .catch(function (err) {
-            console.log('ERROR: ' + err);
-        });
 
     res.send('Hello Battlehack!');
 });

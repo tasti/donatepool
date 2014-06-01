@@ -4,24 +4,20 @@
         <p><a class="btn btn-primary btn" role="button" href="#/host">Host a pool</a></p>
         <p><a class="btn btn-primary btn" role="button" href="#/join">Join a pool</a></p>
     </div>
-    <ul class="list-group">
-        <li class='list-group-item pool__item'>
-            <div class="pool_item-left">
-              <h3>{{pool.name}}</h3>
-          </div>
-      </li>
-  </ul>
-  <div class="pool row" ng-repeat="pool in pools">
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-11 poolName">{{ pool.name }}</div>
-    </div>
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-5 poolHostEmail">{{ pool.hostEmail }}</div>
-        <div class="col-md-6 poolMembers">
-            There <span ng-if="pool.members.length != 1">are</span><span ng-if="pool.members.length == 1">is</span> {{ pool.members.length }} member<span ng-if="pool.members.length != 1">s</span>
+
+  <a href="#/predict:{{pool._id}}" ng-repeat="pool in pools">
+    <div class="pool row">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11 poolName">{{ pool.name }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-5 poolHostEmail">{{ pool.hostEmail }}</div>
+            <div class="col-md-6 poolMembers">
+                There <span ng-if="pool.members.length != 1">are</span><span ng-if="pool.members.length == 1">is</span> {{ pool.members.length }} member<span ng-if="pool.members.length != 1">s</span>
+            </div>
         </div>
     </div>
-  </div>
+  </a>
 </div>

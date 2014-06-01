@@ -26,9 +26,15 @@ var PoolSchema = new Schema({
     members : [String],
     fixed : Number
 });
+var PredictionSchema = new Schema({
+    poolId : String,
+    userEmail: String,
+    data: Object
+});
 
 var User = mongoose.model('User', UserSchema);
 var Pool = mongoose.model('Pool', PoolSchema);
+var Prediction = mongoose.model('Prediction', PredictionSchema);
 
 passport.use(new PayPalStrategy({
         clientID: 'AbkcyBARHBHMHjRyvgMtxS9uQUMPcHLRvt47_-coNd93V6mUDOqtBPHSDDE9',
@@ -154,7 +160,7 @@ app.get('/api/v1/getusers', function(req, res) {
 
 app.get('/api/v1/getpools', function(req, res) {
 
-    Pool.find({}, 'name hostEmail members fixed', function (err, getPools) {
+    Pool.find({}, '_id name hostEmail members fixed', function (err, getPools) {
         
         res.json({ data: getPools });
 
@@ -165,9 +171,18 @@ app.get('/api/v1/getmypools', function(req, res) {
 
     var currentUser = getUser(req) || null;
 
-    Pool.find({ hostEmail: currentUser }, 'name hostEmail members fixed', function (err, getPools) {
+    Pool.find({}, '_id name hostEmail members fixed', function (err, getPools) {
 
-        res.json({ data: getPools });
+        var myPools = [];
+
+        getPools.forEach(function (pool) {
+
+            if (pool.hostEmail == currentUser || pool.members.indexOf(currentUser) != -1) {
+                myPools.push(pool);
+            }
+        });
+
+        res.json({ data: myPools });
 
     });
 
@@ -176,7 +191,7 @@ app.get('/api/v1/getmypools', function(req, res) {
 app.post('/api/v1/hostpool', function(req, res, next) {
     console.log(req);
 
-    var poolName = req.body.poolName;
+    var poolName = req.body.poolName.trim();
     var members = req.body.members;
     var donations = req.body.donations;
     var fixedAmount = req.body.fixedAmount;
@@ -192,4 +207,18 @@ app.post('/api/v1/hostpool', function(req, res, next) {
     });
 
     res.json({ success: "Pool has been created!" });
+});
+
+app.post('/api/v1/addpredictions', function(req, res, next) {
+    
+    var instance = new Prediction();
+    instance.userEmail = getUser(req);
+    instance.poolId = req.body.poolId;
+    instance.data = req.body.data;
+
+    instance.save(function (err) {
+        console.log('SAVED!!');
+    });
+
+    res.json({ success: "Predictions have been saved!" });
 });

@@ -1,13 +1,18 @@
 <div class="main">
-    <ul class="list-group">
-        <li class='list-group-item pool__item' ng-repeat="pool in pools">
-            <div class="pool_item-left">
-              <h3>{{pool.name || "No name"}}</h3>
-              <p><i>Hosted by:</i> {{pool.hostEmail || "No email"}}</p>
-          </div>
-          <div class="pool_item--right">
-            <button class="btn btn-primary btn" ng-click="hostPool()">Join</button>
-        </div>
-    </li>
-</ul>
+
+    <div class="row">
+      <div ng-repeat="(index, pool) in pools">
+        <div class="col-md-2" ></div>
+        <a href="#/predict:{{pool._id}}" class="poolCol col-md-4">
+            <div class="col-md-11 poolName">{{ pool.name }}</div>
+            <div class="col-md-11 poolHostEmail">{{ pool.hostEmail }}</div>
+                <div class="col-md-6 poolMembers">
+                  There <span ng-if="pool.members.length != 1">are</span><span ng-if="pool.members.length == 1">is</span> {{ pool.members.length }} member<span ng-if="pool.members.length != 1">s</span>
+              </div>
+
+        </a>
+
+      </div>
+    </div>
+
 </div>

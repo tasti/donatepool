@@ -135,13 +135,21 @@ function isAuthenticated(req) {
 }
 
 
-
 /********** REST API **********/
 
 app.get('/api/v1/getloggedinuser', function(req, res) {
     var currentUser = getUser(req) || null;
 
     res.json({ email: currentUser });
+});
+
+app.get('/api/v1/getusers', function(req, res) {
+
+    User.find({}, 'givenName familyName email', function (err, getUsers) {
+        
+        res.json({ data: getUsers });
+
+    });
 });
 
 app.get('/api/v1/getpools', function(req, res) {
@@ -157,9 +165,7 @@ app.get('/api/v1/getmypools', function(req, res) {
 
     var currentUser = getUser(req) || null;
 
-    Pool.find({ email: currentUser }, 'name hostEmail members fixed', function (err, getPools) {
-
-        console.log(getPools);
+    Pool.find({ hostEmail: currentUser }, 'name hostEmail members fixed', function (err, getPools) {
 
         res.json({ data: getPools });
 

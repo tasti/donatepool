@@ -6,9 +6,7 @@ donatePoolAppCtrl.controller('MyPoolsCtrl', function ($scope, $http) {
     removeActiveClasses();
     $('#mypools').addClass("active");
 
-    $scope.pools = [
-        { name: 'SampleData', hostEmail: 'e@mail.com', members: ['a', 'b', 'c'], fixed: 5 }
-    ];
+    $scope.pools = [];
 
     $http.get('api/v1/getmypools')
         .success(function (data, status, headers, config) {
@@ -17,9 +15,6 @@ donatePoolAppCtrl.controller('MyPoolsCtrl', function ($scope, $http) {
             data.data.forEach(function (moredata) {
                 $scope.pools.push(moredata);
             });
-
-        })
-        .error(function (data, status, headers, config) {
 
         });
 });
@@ -33,18 +28,54 @@ donatePoolAppCtrl.controller('HostCtrl', function ($scope, $http, $location) {
     $scope.varFixed = 'variable';
     $scope.fixedAmount = '';
 
+
+    $scope.error = [];
+    $scope.users = [];
+
+    $http.get('api/v1/getusers')
+        .success(function (data, status, headers, config) {
+            console.log(data);
+
+            data.data.forEach(function (moredata) {
+                $scope.users.push(moredata);
+            });
+
+        });
+
     $scope.hostPool = function () {
 
-        $http.post('api/v1/hostpool',
-            { poolName: $scope.poolName, members: $scope.members, varFixed: $scope.varFixed, fixedAmount: $scope.fixedAmount })
-            .success(function (data, status, headers, config) {
-                console.log(status);
+        $scope.error = [];
 
-                $location.path('/');
-            })
-            .error(function (data, status, headers, config) {
-                console.log(status);
-            });
+        if ($scope.poolName.trim() == '') {
+            $scope.error.push('You have to name your pool');
+        }
+
+        // Make members string into an array
+        var re = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        var map = Array.prototype.map;
+        var members = map.call($scope.members.split(','), function (x) { return x.trim(); }).filter(function (x) { return x != ''; });
+        var membersRE = map.call(members, function (x) { return x.match(re); });;
+        
+        if (membersRE.indexOf(null) != -1) {
+            $scope.error.push('Format your emails by delimiting them by commas. Ex: "email@address.com, me@example.com"');
+        }
+
+        var parseAmount = parseInt($scope.fixedAmount);
+        console.log(parseAmount);
+        console.log(!!parseAmount);
+        if ($scope.varFixed == 'fixed' && (!!parseAmount == false) || parseAmount <= 0) {
+            $scope.error.push('Enter a number greater than zero');
+        }
+
+        if ($scope.error.length == 0) {
+            $http.post('api/v1/hostpool',
+                { poolName: $scope.poolName, members: members, varFixed: $scope.varFixed, fixedAmount: parseAmount })
+                .success(function (data, status, headers, config) {
+                    console.log(status);
+
+                    $location.path('/');
+                });
+        }
     };
 });
 

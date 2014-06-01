@@ -10,16 +10,20 @@ donatePoolApp.config(['$routeProvider',
     function($routeProvider) {
 
         $routeProvider.
-            when('/part1', {
-                templateUrl: '/partials/partial1.html',
-                controller: 'MyCtrl1'
+            when('/', {
+                templateUrl: '/partials/mypools.html',
+                controller: 'MyPoolsCtrl'
             }).
-            when('/part2', {
-                templateUrl: '/partials/partial2.html',
-                controller: 'MyCtrl2'
+            when('/host', {
+                templateUrl: '/partials/host.html',
+                controller: 'HostCtrl'
+            }).
+            when('/join', {
+                templateUrl: '/partials/join.html',
+                controller: 'JoinCtrl'
             }).
             otherwise({
                 redirectTo: '/'
     });
-            
+
 }]);

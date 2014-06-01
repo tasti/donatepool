@@ -1,0 +1,16 @@
+<div class="main" ng-controller="JoinCtrl">
+    <div class="pool row" ng-repeat="pool in pools">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11 poolName">{{ pool.name }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-5 poolHostEmail">{{ pool.hostEmail }}</div>
+            <div class="col-md-6 poolMembers">
+                There <span ng-if="pool.members.length != 1">are</span><span ng-if="pool.members.length == 1">is</span> {{ pool.members.length }} member<span ng-if="pool.members.length != 1">s</span>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,6 +1,8 @@
 var express = require("express");
+var router = express.Router();
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var bodyParser = require('body-parser');
 var app = express();
 
 var mongoose = require('mongoose');
@@ -18,8 +20,15 @@ var UserSchema = new Schema({
     familyName : String,
     email : String
 });
+var PoolSchema = new Schema({
+    name : String,
+    hostEmail : String,
+    members : [String],
+    fixed : Number
+});
 
 var User = mongoose.model('User', UserSchema);
+var Pool = mongoose.model('Pool', PoolSchema);
 
 passport.use(new PayPalStrategy({
         clientID: 'AbkcyBARHBHMHjRyvgMtxS9uQUMPcHLRvt47_-coNd93V6mUDOqtBPHSDDE9',
@@ -61,6 +70,12 @@ app.use(cookieParser());
 app.use(session({ secret: '123456789' }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(bodyParser());
+
+var port = Number(process.env.PORT || 5000);
+app.listen(port, function() {
+    console.log("Listening on " + port);
+});
 
 app.get('/', function(req, res) {
     if (!isAuthenticated(req)) {
@@ -105,11 +120,6 @@ app.get('/login/callback',
     }
 );
 
-var port = Number(process.env.PORT || 5000);
-app.listen(port, function() {
-    console.log("Listening on " + port);
-});
-
 function getUser(req) {
     return req.session.passport.user;
 }
@@ -123,3 +133,43 @@ function isAuthenticated(req) {
         return true;
     }
 }
+
+
+
+/********** REST API **********/
+
+app.get('/api/v1/getloggedinuser', function(req, res) {
+    var currentUser = getUser(req) || null;
+
+    res.json({ email: currentUser });
+});
+
+app.get('/api/v1/getpools', function(req, res) {
+
+    Pool.find({}, 'name hostEmail members fixed', function (err, getPools) {
+        
+        res.json({ data: getPools });
+
+    });
+});
+
+app.post('/api/v1/hostpool', function(req, res, next) {
+    console.log(req.body);
+
+    var poolName = req.body.poolName;
+    var members = req.body.members;
+    var donations = req.body.donations;
+    var fixedAmount = req.body.fixedAmount;
+
+    var instance = new Pool();
+    instance.name = poolName;
+    instance.hostEmail = getUser(req);
+    instance.members = members;
+    instance.fixed = fixedAmount;
+
+    instance.save(function (err) {
+        console.log('SAVED!');
+    });
+
+    res.json({ success: "Pool has been created!" });
+});

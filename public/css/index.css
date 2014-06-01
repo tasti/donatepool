@@ -1,7 +1,62 @@
 body {
-  padding-top: 50px;
+    padding-top: 50px;
 }
-.starter-template {
-  padding: 40px 15px;
-  text-align: center;
+
+.header1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.header2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    margin: none;
+    color: black;
+    font-weight: none;
+}
+
+.main {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.pool {
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 70%;
+    min-height: 100px;
+    border-radius: 5px;
+    background-color: #87d35b;
+    color: white;
+    text-align: left;
+}
+
+.pool:hover {
+    background-color: #6CA848;
+}
+
+.poolName {
+    font-size: 32px;
+}
+
+.poolHostEmail {
+    font-size: 18px;
+}
+
+.poolMembers {
+    font-size: 14px;
+}
+
+.host {
+    padding: 20px;
+    padding-left: 80px;
+    background-color: #87d35b;
+    color: white;
+    border-radius: 5px;
+    text-align: left;
 }

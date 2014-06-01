@@ -1,0 +1,35 @@
+<div class="main" ng-controller="HostCtrl">
+    <div class="host">
+        <div class="row">
+            <label class="col-md-4 header1" for="poolName">Pool name</label>
+            <input class="col-md-5 header1" type="text" name="poolName" id="poolName" ng-model="poolName">
+        </div>
+        <br>
+        <div class="row">
+            <label class="col-md-4 header1" for="members">Invite members</label>
+            <input class="col-md-7 header1" type="text" name="members" id="members" ng-model="members">
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4 header1">Donations</div>
+
+            <label class="col-md-2 header2" for="variable">Variable</label>
+            <input class="col-md-1 header2" type="radio" name="donations" id="variable" ng-model="varFixed" value="variable" checked>
+        </div>
+        <div class="row">
+            <div class="col-md-4 header1"></div>
+
+            <label class="col-md-2 header2" for="fixed">Fixed</label>
+            <input class="col-md-1 header2" type="radio" name="donations" id="fixed" ng-model="varFixed" value="fixed">
+
+            <span ng-if="varFixed == 'fixed'">
+                <label class="col-md-2 header2" for="fixedAmount">Amount</label>
+                <input class="col-md-2" type="text" name="fixedAmount" id="fixedAmount" placeholder="10.00"  ng-model="fixedAmount">
+            </span>
+        </div>
+        <br>
+        <div class="row" style="text-align: center;">
+            <button class="btn btn-primary btn-lg" ng-click="hostPool()">Host pool</button>
+        </div>
+    </div>
+</div>

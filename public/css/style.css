@@ -30,7 +30,9 @@ html {
   background-color: transparent;
   color: #DDD;
 }
-
+.inst {
+  text-align: center;
+}
 .after {
   clear:both;
 }
@@ -38,7 +40,7 @@ html {
   display: inline-block;
   margin: 5px;
   padding: 3px;
-  float: left;
+  float: none;
   background-color: rgba(118, 237, 134, 0.4);
 }
 .inst__modal > h4 {

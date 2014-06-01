@@ -15,14 +15,16 @@
   <div class="jumbotron">
     <h1>Donate Pool</h1>
     <p>A modern sports pool that helps out local charities.</p>
-    <ul class="inst">
-      <li ng-repeat="instruction in instructions">
-        <div class="inst__modal">
-          <h4>Step {{$index+1}}.</h4>
-          <p>{{instruction}}</p>
-        </div>
-      </li>
-    </ul>
+    <div>
+      <ul class="inst">
+        <li ng-repeat="instruction in instructions">
+          <div class="inst__modal">
+            <h4>Step {{$index+1}}.</h4>
+            <p>{{instruction}}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
     <p class="after">Are you ready to predict the world cup?</p>
 
     <p><a class="btn btn-primary btn-lg" role="button" href="/login">Login or join with Paypal</a></p>

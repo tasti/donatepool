@@ -48,6 +48,14 @@ passport.use(new PayPalStrategy({
     }
 ));
 
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+    done(null, user);
+});
+
 app.use(express.static(__dirname + '/public'));
 app.use(cookieParser());
 app.use(session({ secret: '123456789' }));
@@ -55,18 +63,21 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('/', function(req, res) {
-    isAuthenticated(req, res);
+    if (!isAuthenticated(req)) {
+        res.redirect('/start');
+    }
 
 
     res.sendfile(__dirname + '/views/index.html');
 });
 
-passport.serializeUser(function(user, done) {
-    done(null, user);
-});
+app.get('/start', function(req, res) {
+    if (isAuthenticated(req)) {
+        res.redirect('/');
+    }
 
-passport.deserializeUser(function(user, done) {
-    done(null, user);
+
+    res.sendfile(__dirname + '/views/start.html');
 });
 
 app.get('/login', passport.authenticate('paypal', { scope: 'openid profile email' }), function(req, res) {
@@ -103,10 +114,12 @@ function getUser(req) {
     return req.session.passport.user;
 }
 
-function isAuthenticated(req, res) {
+function isAuthenticated(req) {
     var currentUser = getUser(req);
 
     if (currentUser == null) {
-        res.redirect('/login');
+        return false;
+    } else {
+        return true;
     }
 }

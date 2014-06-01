@@ -2,12 +2,13 @@
 
 var donatePoolApp = angular.module('donatePoolApp', [
     'ngRoute',
-    'donateAppControllers'
+    'donatePoolAppCtrl'
 ]);
 
 donatePoolApp.config(['$routeProvider',
     
     function($routeProvider) {
+
         $routeProvider.
             when('/part1', {
                 templateUrl: '/partials/partial1.html',
@@ -18,6 +19,7 @@ donatePoolApp.config(['$routeProvider',
                 controller: 'MyCtrl2'
             }).
             otherwise({
-                redirectTo: '/phones'
+                redirectTo: '/'
     });
+            
 }]);

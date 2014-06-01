@@ -1,11 +1,11 @@
 'use strict';
 
-var donatePoolApp = angular.module('donatePoolApp', []);
+var donatePoolAppCtrl = angular.module('donatePoolAppCtrl', []);
 
-donatePoolApp.controller('MyCtrl1', function ($scope) {
+donatePoolAppCtrl.controller('MyCtrl1', function ($scope) {
 
 });
 
-donatePoolApp.controller('MyCtrl2', function ($scope) {
+donatePoolAppCtrl.controller('MyCtrl2', function ($scope) {
     
 });

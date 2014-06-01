@@ -44,10 +44,10 @@ html {
   background-color: rgba(118, 237, 134, 0.4);
 }
 .inst__modal > h4 {
-  font-size: 2rem;
+  font-size: 20px;
 }
 .inst__modal > p {
-  font-size: 1.4rem;
+  font-size: 13px;
 }
 .inst__modal {
   width: 20rem;

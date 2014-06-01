@@ -9,7 +9,8 @@
     "passport-paypal-oauth": "https://github.com/SeraphimSerapis/passport-paypal-oauth/tarball/master",
     "express-session": "~1.2.1",
     "connect-mongo": "~0.4.1",
-    "cookie-parser": "~1.1.0"
+    "cookie-parser": "~1.1.0",
+    "angular-route": "~1.2.17-build.163.1"
   },
   "engines": {
     "node": "0.10.x"

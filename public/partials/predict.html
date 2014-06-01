@@ -1,3 +1,72 @@
-<div ng-controller="PredictCtrl">
-  <p>Hello</p>
+<div ng-if="views[current] == 'group_stage'" class="predict__container">
+  <h1>Group Stage</h1>
+  <ul class="list-group groups">
+    <li class="list-group-item group_li" ng-repeat="group in group_stage">
+      <h2>Group {{group.section}} </h2>
+      <ul class="list-group teams">
+        <li class="list-group-item">
+          <ul class="list-group position">
+            <li data-drop="true" data-jqyoui-options ng-model="group.first_place" jqyoui-droppable class="list-group-item">
+              <h4>First place</h4>
+              <img ng-if="group.first_place.logo" ng-src="/img/teams/{{group.first_place.logo}}"></img>
+            </li>
+            <li data-drop="true" data-jqyoui-options ng-model="group.second_place" jqyoui-droppable class="list-group-item">
+              <h4>Second place</h4>
+              <img ng-if="group.second_place.logo" ng-src="/img/teams/{{group.second_place.logo}}"></img>
+            </li>
+          </ul>
+        </li>
+        <li ng-if="team.logo"class="list-group-item team" ng-repeat="team in group.teams">
+          <img data-drag="true" ng-model="team" data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{animate:true}" ng-src="/img/teams/{{team.logo}}"></img>
+          <h3>{{team.team}}</h3>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><a class="btn btn-primary btn-lg" role="button" ng-click="next()">Go to the round of 16</a></p>
+</div>
+<div ng-if="views[current] == 'round_of_16' || views[current] == 'semi_finals' || views[current] == 'quarter_finals'" class="predict__container">
+  <h1>{{event_name[current]}}</h1>
+  <ul class="list-group groups">
+    <li class="list-group-item group_li" ng-repeat="match in next_round">
+      <h2>{{match.section}}</h2>
+      <ul class="list-group teams">
+        <li class="list-group-item">
+          <ul class="list-group position">
+            <li data-drop="true" data-jqyoui-options ng-model="match.winner" jqyoui-droppable class="list-group-item">
+              <h4>Winner</h4>
+              <img ng-if="match.winner.logo" ng-src="/img/teams/{{match.winner.logo}}"></img>
+            </li>
+          </ul>
+          <li ng-if="team.logo"class="list-group-item team" ng-repeat="team in match.teams">
+            <img data-drag="true" ng-model="team" data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{animate:true}" ng-src="/img/teams/{{team.logo}}"></img>
+            <h3>{{team.team}}</h3>
+          </li>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<p><a class="btn btn-primary btn-lg" role="button" ng-click="next()">Go to the {{event_name[current+1]}}</a></p>
+</div>
+<div ng-if="views[current] == 'finals'" class="predict__container">
+  <h1>Finals</h1>
+  <ul class="list-group groups" ng-repeat="match in next_round">
+    <li class="list-group-item group_li">
+      <ul class="list-group teams">
+        <ul class="list-group position">
+          <li data-drop="true" data-jqyoui-options ng-model="match.winner" jqyoui-droppable class="list-group-item">
+            <h4>Winner</h4>
+            <img ng-if="match.winner.logo" ng-src="/img/teams/{{match.winner.logo}}"></img>
+          </li>
+        </ul>
+        <li ng-if="team.logo"class="list-group-item team" ng-repeat="team in match.teams">
+          <img data-drag="true" ng-model="team" data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{animate:true}" ng-src="/img/teams/{{team.logo}}"></img>
+          <h3>{{team.team}}</h3>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><a class="btn btn-primary btn-lg" role="button" href="/">Done</a></p>
 </div>

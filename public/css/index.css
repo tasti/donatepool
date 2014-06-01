@@ -60,3 +60,44 @@ input[type="text"] {
     border-radius: 5px;
     text-align: left;
 }
+.predict__container {
+    text-align: center;
+    margin: auto;
+}
+
+.groups {
+    text-align: center;
+}
+.groups > li {
+    width: 40rem;
+    display: inline-block;
+    text-align: center;
+    margin: 10px;
+}
+
+.teams > li {
+    margin: 2px;
+}
+
+.teams > ul {
+    margin-bottom: 0;
+}
+
+.group_li > ul {
+    margin-bottom: 0;
+}
+
+.team {
+    width: 18rem;
+    display: inline-block;
+    text-align: center;
+}
+.teams > p{
+
+}
+
+.position, .teams {
+    margin-bottom: 0px;
+}
+
+

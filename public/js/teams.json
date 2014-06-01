@@ -54,7 +54,7 @@
           "logo": "gre.png"
         },
         {
-          "team": "Côte d'Ivoire",
+          "team": "Cote d'Ivoire",
           "logo": "civ.png"
         },
         {
@@ -113,8 +113,8 @@
           "logo": "arg.png"
         },
         {
-          "team": "Bosnia and Herzegovina",
-          "logo": "bin.png"
+          "team": "Bosnia",
+          "logo": "bih.png"
         },
         {
           "team": "Iran",
@@ -163,7 +163,7 @@
           "logo": "rus.png"
         },
         {
-          "team": "Korea Republic",
+          "team": "Korea",
           "logo": "kor.png"
         }
       ]

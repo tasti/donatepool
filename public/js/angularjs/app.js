@@ -2,6 +2,7 @@
 
 var donatePoolApp = angular.module('donatePoolApp', [
     'ngRoute',
+    'ngDragDrop',
     'donatePoolAppCtrl'
 ]);
 

@@ -6,10 +6,14 @@ var donatePoolApp = angular.module('donatePoolApp', [
 ]);
 
 donatePoolApp.config(['$routeProvider',
-    
+
     function($routeProvider) {
 
         $routeProvider.
+            when('/predict', {
+                templateUrl: '/partials/predict.html',
+                controller: 'PredictCtrl'
+            }).
             when('/part1', {
                 templateUrl: '/partials/partial1.html',
                 controller: 'MyCtrl1'
@@ -21,5 +25,5 @@ donatePoolApp.config(['$routeProvider',
             otherwise({
                 redirectTo: '/'
     });
-            
+
 }]);

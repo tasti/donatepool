@@ -10,8 +10,8 @@ html {
 }
 html {
   background: linear-gradient(
-    rgba(0, 0, 0, 0.5),
-    rgba(0, 0, 0, 0.5)),
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.6)),
   url(/img/bg2.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -21,14 +21,38 @@ html {
 }
 
 .main {
+  display: none;
   text-align: center;
   background-color: transparent;
 }
 
-h1 {
- font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
- font-weight: 300;
- font-size: 3rem;
- color: #DDD;
- text-align: center;
+.jumbotron {
+  background-color: transparent;
+  color: #DDD;
 }
+.inst {
+  text-align: center;
+}
+.after {
+  clear:both;
+}
+.inst > li{
+  display: inline-block;
+  margin: 5px;
+  padding: 3px;
+  float: none;
+  background-color: rgba(118, 237, 134, 0.4);
+}
+.inst__modal > h4 {
+  font-size: 2rem;
+}
+.inst__modal > p {
+  font-size: 1.4rem;
+}
+.inst__modal {
+  width: 20rem;
+  height: 10rem;
+}
+
+body {
+  font-family: "Ubuntu", Helvetica, Arial, sans-serif!important;

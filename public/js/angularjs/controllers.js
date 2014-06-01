@@ -53,6 +53,11 @@ donatePoolAppCtrl.controller('JoinCtrl', function ($scope, $http) {
         .error(function (data, status, headers, config) {
 
         });
+
+});
+
+donatePoolAppCtrl.controller('PredictCtrl', function($scope){
+
 });
 
 function removeActiveClasses() {

@@ -1,0 +1,172 @@
+{
+  "groups": [
+    {
+      "section": "A",
+      "teams": [
+        {
+          "team": "Brazil",
+          "logo": "teams/brazil.png"
+        },
+        {
+          "team": "Croatia",
+          "logo": ""
+        },
+        {
+          "team": "Mexico",
+          "logo": ""
+        },
+        {
+          "team": "Cameroon",
+          "logo": ""
+        }
+      ]
+    },
+    {
+      "section": "B",
+      "teams": [
+        {
+          "team": "Spain",
+          "logo": ""
+        },
+        {
+          "team": "Netherlands",
+          "logo": ""
+        },
+        {
+          "team": "Chile",
+          "logo": ""
+        },
+        {
+          "team": "Australia",
+          "logo": ""
+        }
+      ]
+    },
+    {
+      "section": "C",
+      "teams": [
+        {
+          "team": "Colombia",
+          "logo": ""
+        },
+        {
+          "team": "Greece",
+          "logo": ""
+        },
+        {
+          "team": "Côte d'Ivoire",
+          "logo": ""
+        },
+        {
+          "team": "Japan",
+          "logo": ""
+        }
+      ]
+    },
+    {
+      "section": "D",
+      "teams": [
+        {
+          "team": "Uruguay",
+          "logo": ""
+        },
+        {
+          "team": "Costa Rica",
+          "logo": ""
+        },
+        {
+          "team": "England",
+          "logo": ""
+        },
+        {
+          "team": "Italy",
+          "logo": ""
+        }
+      ]
+    },
+    {
+      "section": "E",
+      "teams": [
+        {
+          "team": "Switzerland",
+          "logo": ""
+        },
+        {
+          "team": "Ecuador",
+          "logo": ""
+        },
+        {
+          "team": "France",
+          "logo": ""
+        },
+        {
+          "team": "Honduras",
+          "logo": ""
+        }
+      ]
+    },
+    {
+      "section": "F",
+      "teams": [
+        {
+          "team": "Argentina",
+          "logo": ""
+        },
+        {
+          "team": "Bosnia and Herzegovina",
+          "logo": ""
+        },
+        {
+          "team": "Iran",
+          "logo": ""
+        },
+        {
+          "team": "Nigeria",
+          "logo": ""
+        }
+      ]
+    },
+    {
+      "section": "G",
+      "teams": [
+        {
+          "team": "Germany",
+          "logo": ""
+        },
+        {
+          "team": "Portugal",
+          "logo": ""
+        },
+        {
+          "team": "Ghana",
+          "logo": ""
+        },
+        {
+          "team": "USA",
+          "logo": ""
+        }
+      ]
+    },
+    {
+      "section": "H",
+      "teams": [
+        {
+          "team": "Belgium",
+          "logo": ""
+        },
+        {
+          "team": "Algeria",
+          "logo": ""
+        },
+        {
+          "team": "Russia",
+          "logo": ""
+        },
+        {
+          "team": "Korea Republic",
+          "logo": ""
+        }
+      ]
+    }
+  ]
+}

@@ -153,8 +153,22 @@ app.get('/api/v1/getpools', function(req, res) {
     });
 });
 
+app.get('/api/v1/getmypools', function(req, res) {
+
+    var currentUser = getUser(req) || null;
+
+    Pool.find({ email: currentUser }, 'name hostEmail members fixed', function (err, getPools) {
+
+        console.log(getPools);
+
+        res.json({ data: getPools });
+
+    });
+
+});
+
 app.post('/api/v1/hostpool', function(req, res, next) {
-    console.log(req.body);
+    console.log(req);
 
     var poolName = req.body.poolName;
     var members = req.body.members;

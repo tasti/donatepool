@@ -2,9 +2,26 @@
 
 var donatePoolAppCtrl = angular.module('donatePoolAppCtrl', []);
 
-donatePoolAppCtrl.controller('MyPoolsCtrl', function ($scope) {
+donatePoolAppCtrl.controller('MyPoolsCtrl', function ($scope, $http) {
     removeActiveClasses();
     $('#mypools').addClass("active");
+
+    $scope.pools = [
+        { name: 'SampleData', hostEmail: 'e@mail.com', members: ['a', 'b', 'c'], fixed: 5 }
+    ];
+
+    $http.get('api/v1/getmypools')
+        .success(function (data, status, headers, config) {
+            console.log(data);
+
+            data.data.forEach(function (moredata) {
+                $scope.pools.push(moredata);
+            });
+
+        })
+        .error(function (data, status, headers, config) {
+
+        });
 });
 
 donatePoolAppCtrl.controller('HostCtrl', function ($scope, $http, $location) {

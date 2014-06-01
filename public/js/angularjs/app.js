@@ -13,6 +13,7 @@ donatePoolApp.config(['$routeProvider',
             when('/', {
                 templateUrl: '/partials/mypools.html',
                 controller: 'MyPoolsCtrl'
+            }).
             when('/predict', {
                 templateUrl: '/partials/predict.html',
                 controller: 'PredictCtrl'

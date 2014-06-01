@@ -77,6 +77,12 @@ app.get('/login', passport.authenticate('paypal', { scope: 'openid profile email
     console.log('\n\n\n\n\n');
 });
 
+app.get('/logout', function(req, res) {
+    req.session.passport.user = null;
+
+    res.redirect('/');
+});
+
 app.get('/login/callback', 
     passport.authenticate('paypal', { failureRedirect: '/error' }),
     function(req, res) {

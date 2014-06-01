@@ -4,7 +4,12 @@
   "main": "app.js",
   "dependencies": {
     "express": "~4.4.0",
-    "mongoose": "~3.8.12"
+    "mongoose": "~3.8.12",
+    "passport": "~0.2.0",
+    "passport-paypal-oauth": "https://github.com/SeraphimSerapis/passport-paypal-oauth/tarball/master",
+    "express-session": "~1.2.1",
+    "connect-mongo": "~0.4.1",
+    "cookie-parser": "~1.1.0"
   },
   "engines": {
     "node": "0.10.x"

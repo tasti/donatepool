@@ -39,7 +39,7 @@ var Prediction = mongoose.model('Prediction', PredictionSchema);
 passport.use(new PayPalStrategy({
         clientID: 'AbkcyBARHBHMHjRyvgMtxS9uQUMPcHLRvt47_-coNd93V6mUDOqtBPHSDDE9',
         clientSecret: 'EJPtWBCrDJY-K_oDHZSDy4eHFQUdzoFs-UlG1GmpgFxP5EDTM31pJRPXVOPk',
-        callbackURL: "http://localhost:5000/login/callback"
+        callbackURL: "http://donatepool.herokuapp.com/login/callback"
     },
     function(accessToken, refreshToken, user, done) {
         User.findOne({ email: user._json.email }, 'id givenName familyName email', function (err, getUser) {
